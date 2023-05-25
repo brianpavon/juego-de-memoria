@@ -149,7 +149,8 @@ export class HomePage {
 
   constructor() {}
 
-  jugar(id:number){
+  jugar(id:number){    
+    
     const element = document.getElementById(id.toString());
 
     element!.classList.toggle('flipped');
@@ -191,6 +192,11 @@ export class HomePage {
 
   elegirNivel(nivel : number){
     switch (nivel) {
+      case 0:
+        this.dificultad = '';
+        this.cartas = [];        
+        break;
+
       case 1:
         this.dificultad = 'facil';
         this.cartas = this.animales;
