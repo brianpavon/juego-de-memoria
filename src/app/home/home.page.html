@@ -1,17 +1,14 @@
 <ion-header [translucent]="true" color="warning" *ngIf="!dificultad">
   <ion-toolbar color="warning">
-    <ion-title>
-      Elegí un nivel
-    </ion-title>
+    
+    <ion-buttons slot="start">
+      <ion-button fill="outline" shape="round" routerLink="/ranking">
+        Tabla de posiciones
+      </ion-button>
+    </ion-buttons>
     
     <ion-buttons slot="end">
-      
-      <div style="display: flex;justify-content: center;align-items: center;flex-direction: column; margin-right: 15px; margin-top: 10px; margin-bottom: 10px;">
-        <img src="assets/images/ranking.png" alt="ranking" width="90%" height="90%">
-        <ion-label>Puntajes</ion-label>
-      </div>
-      
-      <ion-button fill="outline" shape="round">
+      <ion-button fill="outline" shape="round" (click)="this.auth.logout()">
         Cerrar sesión
         <ion-icon name="log-out-outline"></ion-icon>
       </ion-button>
@@ -39,6 +36,7 @@
 <ion-content [fullscreen]="true">
   
   <div class="container">
+    <ion-title *ngIf="!dificultad" class="titulo-principal">Elegí un nivel</ion-title>
 
     <div class="contenedor-botones" *ngIf="!dificultad">      
       <div class="boton-numero" (click)="elegirNivel(1)">        
@@ -110,15 +108,7 @@
         </div>
       </div>
     </div>
-
-    <!-- <img *ngIf="dificultad" class="rotating-image" src="assets/images/question.png" alt="pregunta"> -->
     
   </div> 
 
 </ion-content>
-
-<!-- <ion-fab  horizontal="end" vertical="top">
-  <ion-fab-button color="dark" title="Cerrar sesión">
-    <ion-icon name="log-out-outline" color="warning"></ion-icon>
-  </ion-fab-button>
-</ion-fab> -->

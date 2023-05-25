@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -154,7 +155,7 @@ export class HomePage {
   cantidadPares : number = 0;
   tiempoJugador : any;
 
-  constructor() {}
+  constructor(public auth : AuthService) {}
 
   jugar(id:number){    
     

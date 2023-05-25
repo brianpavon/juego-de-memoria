@@ -1,0 +1,22 @@
+<ion-header [translucent]="true" color="warning">
+  <ion-toolbar color="warning">
+    
+    <ion-buttons slot="start">
+      <ion-button fill="outline" shape="round" routerLink="/home">
+        Menú de juegos
+      </ion-button>
+    </ion-buttons>
+    
+    <ion-buttons slot="end">
+      <ion-button fill="outline" shape="round" (click)="this.auth.logout()">
+        Cerrar sesión
+        <ion-icon name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+</ion-content>
