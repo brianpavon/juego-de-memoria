@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -147,6 +148,12 @@ export class HomePage {
     }
   ]
 
+  seconds : number = 0;
+  intervalId: any;
+  aciertos : number = 0;
+  cantidadPares : number = 0;
+  tiempoJugador : any;
+
   constructor() {}
 
   jugar(id:number){    
@@ -179,11 +186,18 @@ export class HomePage {
           element2!.classList.toggle('flipped');
         }, 1000);
 
-      }else{
-
+      }else{        
+        
         element1!.parentNode?.removeAllListeners!();
         element2!.parentNode?.removeAllListeners!();
-
+        this.aciertos++;
+        if(this.aciertos == this.cantidadPares){
+          this.tiempoJugador = this.formatTime();
+          clearInterval(this.intervalId);                  
+          setTimeout(() => {
+            this.win()
+          }, 1000);
+        }
       }
 
       this.cartasArray = [];
@@ -193,28 +207,86 @@ export class HomePage {
   elegirNivel(nivel : number){
     switch (nivel) {
       case 0:
+        this.aciertos = 0;
+        this.cantidadPares = 0;
+        this.stopTimer();
         this.dificultad = '';
-        this.cartas = [];        
+        this.cartas = [];
         break;
 
-      case 1:
+      case 1:        
         this.dificultad = 'facil';
+        this.cantidadPares = 3;
         this.cartas = this.animales;
-        this.cartas.sort(()=> Math.random() - 0.5);        
+        this.cartas.sort(()=> Math.random() - 0.5);
+        this.startTimer()
         break;
       
       case 2:
         this.dificultad = 'medio';
+        this.cantidadPares = 5;
         this.cartas = this.herramientas;
         this.cartas.sort(()=> Math.random() - 0.5);
+        this.startTimer()
         break;
       
       case 3:
         this.dificultad = 'dificil';
+        this.cantidadPares = 8;
         this.cartas = this.frutas;
         this.cartas.sort(()=> Math.random() - 0.5);
+        this.startTimer()
         break;
     }
+  }
+
+  startTimer() {
+    this.intervalId = setInterval(() => {
+      this.updateTimer();
+    }, 1000);
+  }
+
+  updateTimer() {
+    this.seconds++;
+  }
+
+  formatTime() {
+    const minutes = Math.floor(this.seconds / 60);
+    const remainingSeconds = this.seconds % 60;
+    return `${this.padTime(minutes)}:${this.padTime(remainingSeconds)}`;
+  }
+
+  padTime(time: number) {
+    return time < 10 ? `0${time}` : time;
+  }
+
+  stopTimer(){
+    this.seconds = 0;
+    clearInterval(this.intervalId);
+  }
+
+  win(){
+    Swal.fire({
+      title: '¡¡Ganaste!!',
+      text: `Lo hiciste en ${this.tiempoJugador}`,
+      confirmButtonText: "Elegir otra dificultad",
+      confirmButtonColor: '#7e34bc',
+      background: '#80b97d',
+      color: '#FFFFFF',
+      heightAuto:false,
+      // cancelButtonColor: '#ff9400',
+      // showCancelButton: true,
+      // cancelButtonText: 'Jugar de nuevo'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.elegirNivel(0);
+        this.stopTimer();
+      }else{
+        this.stopTimer();
+        this.elegirNivel(0)
+        this.elegirNivel(1);
+      }
+    });
   }
 
 }

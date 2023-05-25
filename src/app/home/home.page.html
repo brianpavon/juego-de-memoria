@@ -5,6 +5,12 @@
     </ion-title>
     
     <ion-buttons slot="end">
+      
+      <div style="display: flex;justify-content: center;align-items: center;flex-direction: column; margin-right: 15px; margin-top: 10px; margin-bottom: 10px;">
+        <img src="assets/images/ranking.png" alt="ranking" width="90%" height="90%">
+        <ion-label>Puntajes</ion-label>
+      </div>
+      
       <ion-button fill="outline" shape="round">
         Cerrar sesión
         <ion-icon name="log-out-outline"></ion-icon>
@@ -17,7 +23,7 @@
 <ion-header [translucent]="true" color="warning" *ngIf="dificultad">
   <ion-toolbar color="warning">
     <ion-title>
-      <span id="timer">00:00</span>
+      <span>{{ formatTime() }}</span>
     </ion-title>
     
     <ion-buttons slot="end">
