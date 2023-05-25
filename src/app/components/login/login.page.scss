@@ -1,0 +1,46 @@
+ion-content,ion-header,ion-toolbar{
+    --background: rgb(126 52 188);
+}
+
+.background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    // background-image: url('/assets/images/fondo-app.jpg');
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // z-index: -1;
+}
+
+ion-button[shape=circle] {
+    --border-radius: 50%;
+    width: 150px;
+    height: 150px;    
+    margin: 15px;
+}
+
+.btn-circular{
+    border-radius: 50%;
+    border: 6px solid black;
+}
+
+.titulo-login{
+    text-align: center;
+    font-size: xx-large;
+    color: whitesmoke;
+}
+
+.rotating-image {
+    animation: rotate 4.5s infinite linear;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
