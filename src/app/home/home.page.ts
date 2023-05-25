@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import Swal from 'sweetalert2';
 import { AuthService } from '../services/auth.service';
+import { PuntajesService } from '../services/puntajes.service';
 
 @Component({
   selector: 'app-home',
@@ -155,7 +156,7 @@ export class HomePage {
   cantidadPares : number = 0;
   tiempoJugador : any;
 
-  constructor(public auth : AuthService) {}
+  constructor(public auth : AuthService,private db : PuntajesService) {}
 
   jugar(id:number){    
     
@@ -280,14 +281,35 @@ export class HomePage {
       // cancelButtonText: 'Jugar de nuevo'
     }).then((result) => {
       if (result.isConfirmed) {
+        this.guardarDatos()
         this.elegirNivel(0);
         this.stopTimer();
       }else{
+        //ACA HABRÍA QUE HACER QUE SE DEN VUELTAS TODAS LAS CARTAS PARA VOLVER A EMPEZAR
         this.stopTimer();
         this.elegirNivel(0)
         this.elegirNivel(1);
       }
     });
+  }
+
+  guardarDatos(){
+    const date = new Date();    
+    //para que quede DD/MM/YYYY
+    const mes = date.getMonth()+1 < 10 ? `0${date.getMonth()+1}` : date.getMonth()+1;
+    const fecha =`${date.getDate()}/${mes}/${date.getFullYear()}`;
+
+    const jugador = this.auth.mailLogueado;
+    console.log(fecha, this.tiempoJugador,jugador,this.seconds);
+    //guardar los datos,guardo segundos porque creo que para ordenar va a ser mas facil con ese dato
+    const data = {
+        fecha:fecha,
+        tiempo:this.tiempoJugador,
+        jugador : jugador,
+        segundos: this.seconds
+      }
+    this.db.guardarDatos(data);
+    
   }
 
 }
