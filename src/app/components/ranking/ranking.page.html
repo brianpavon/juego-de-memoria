@@ -25,7 +25,11 @@
     <ion-button (click)="tipoResultado(3)" color="dark">Difícil</ion-button>
   </div>
 
-  <div *ngIf="top5">
+  <div class="spinner" *ngIf="cargando">
+    <ion-spinner name="circular" color="danger" style="width: 70px;height: 70px;"></ion-spinner>
+  </div>
+
+  <div *ngIf="top5 && !cargando">
     <ion-title class="titulo-principal" *ngIf="nivel == 'fácil'">Mejores 5 del nivel fácil</ion-title>
     <ion-title class="titulo-principal" *ngIf="nivel == 'medio'">Mejores 5 del nivel medio</ion-title>
     <ion-title class="titulo-principal" *ngIf="nivel == 'difícil'">Mejores 5 del nivel difícil</ion-title>

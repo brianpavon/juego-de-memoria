@@ -12,6 +12,7 @@ export class RankingPage implements OnInit {
   puntajes : any = [];
   top5 : any = []
   nivel : string = ''
+  cargando : boolean = true;
 
   constructor(public auth : AuthService, private db : PuntajesService) { 
     this.db.traerPuntajes().subscribe(data => {
@@ -22,6 +23,9 @@ export class RankingPage implements OnInit {
       this.top5 = this.puntajes.filter((a: { nivel: string; }) => a.nivel === 'fácil')
       this.top5 = this.top5.slice(0, 5);
       this.nivel = 'fácil';
+      setTimeout(() => {
+        this.cargando = false        
+      }, 2000);
     })
   }
 
