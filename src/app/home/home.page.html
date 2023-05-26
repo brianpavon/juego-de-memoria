@@ -53,7 +53,7 @@
     </div>
 
     <!-- ANIMALES -->
-    <div class="contenedor-carta-animal" *ngIf="dificultad == 'facil'">
+    <div class="contenedor-carta-animal" *ngIf="dificultad == 'fácil'">
       <div  class="carta-animal"  *ngFor="let item of cartas" (click)="jugar(item.id)">
         <div class="flip-container-animal" id="{{item.id}}" >
           <div class="flipper-animal">
@@ -91,7 +91,7 @@
     </div>
     
     <!-- FRUTAS -->
-    <div class="contenedor-cartas-fruta" *ngIf="dificultad == 'dificil'">
+    <div class="contenedor-cartas-fruta" *ngIf="dificultad == 'difícil'">
       <div  class="carta-fruta"  *ngFor="let item of cartas" (click)="jugar(item.id)">
         <div class="flip-container-fruta" id="{{item.id}}" >
           <div class="flipper-fruta" >

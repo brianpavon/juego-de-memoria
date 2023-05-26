@@ -217,7 +217,7 @@ export class HomePage {
         break;
 
       case 1:        
-        this.dificultad = 'facil';
+        this.dificultad = 'fácil';
         this.cantidadPares = 3;
         this.cartas = this.animales;
         this.cartas.sort(()=> Math.random() - 0.5);
@@ -233,7 +233,7 @@ export class HomePage {
         break;
       
       case 3:
-        this.dificultad = 'dificil';
+        this.dificultad = 'difícil';
         this.cantidadPares = 8;
         this.cartas = this.frutas;
         this.cartas.sort(()=> Math.random() - 0.5);
@@ -306,7 +306,8 @@ export class HomePage {
         fecha:fecha,
         tiempo:this.tiempoJugador,
         jugador : jugador,
-        segundos: this.seconds
+        segundos: this.seconds,
+        nivel : this.dificultad
       }
     this.db.guardarDatos(data);
     

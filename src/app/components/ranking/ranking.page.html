@@ -19,4 +19,29 @@
 
 <ion-content [fullscreen]="true">
   
+  <div class="botonera">
+    <ion-button (click)="tipoResultado(1)" color="dark">Fácil</ion-button>
+    <ion-button (click)="tipoResultado(2)" color="dark">Medio</ion-button>
+    <ion-button (click)="tipoResultado(3)" color="dark">Difícil</ion-button>
+  </div>
+
+  <div *ngIf="top5">
+    <ion-title class="titulo-principal" *ngIf="nivel == 'fácil'">Mejores 5 del nivel fácil</ion-title>
+    <ion-title class="titulo-principal" *ngIf="nivel == 'medio'">Mejores 5 del nivel medio</ion-title>
+    <ion-title class="titulo-principal" *ngIf="nivel == 'difícil'">Mejores 5 del nivel difícil</ion-title>
+
+    <ion-card *ngFor="let item of top5" class="card ion-text-center" >
+      <ion-card-header>
+        <ion-card-title>{{ item.jugador }}</ion-card-title>
+        <ion-card-subtitle style="text-transform: capitalize;">{{ item.nivel }}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <h2>Tiempo : {{ item.tiempo }}</h2>
+      </ion-card-content>
+    </ion-card>
+
+  </div>
+
+  
+
 </ion-content>
