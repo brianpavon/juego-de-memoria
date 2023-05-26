@@ -300,7 +300,7 @@ export class HomePage {
     const fecha =`${date.getDate()}/${mes}/${date.getFullYear()}`;
 
     const jugador = this.auth.mailLogueado;
-    console.log(fecha, this.tiempoJugador,jugador,this.seconds);
+    //console.log(fecha, this.tiempoJugador,jugador,this.seconds);
     //guardar los datos,guardo segundos porque creo que para ordenar va a ser mas facil con ese dato
     const data = {
         fecha:fecha,
