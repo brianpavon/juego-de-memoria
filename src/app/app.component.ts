@@ -9,7 +9,7 @@ import {SplashScreen} from '@capacitor/splash-screen';
 })
 export class AppComponent {
   constructor(private router : Router) {
-    this.router.navigateByUrl('splash');
+    //this.router.navigateByUrl('splash');
   }
   
   ionViewDitEnter(){
